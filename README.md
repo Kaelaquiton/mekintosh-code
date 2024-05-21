@@ -42,6 +42,7 @@ c#last
 2. CHAR – a single symbol. 
 3. BOOL – represents the literals true or false.
 4. FLOAT – a number with decimal part. It occupies 4 bytes in the memory.
+5. STRING - a sequence of characters
 
 ### Operators:
 #### Arithmetic operators
