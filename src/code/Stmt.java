@@ -3,9 +3,23 @@ package code;
 import java.util.List;
 
 abstract class Stmt {
+    interface Visitor<R> {
+        R visitBlockStmt(Block stmt);
+        R visitExpressionStmt(Expression stmt);
+        R visitIfStmt(If stmt);
+        R visitPrintStmt(Print stmt);
+        R visitScanStmt(Scan stmt);
+        R visitVarStmt(Var stmt);
+        R visitWhileStmt(While stmt);
+    }
     static class Block extends Stmt {
         Block(List<Stmt> statements) {
             this.statements = statements;
+        }
+
+        @Override
+        <R> R accept(Visitor<R> visitor) {
+            return visitor.visitBlockStmt(this);
         }
 
         final List<Stmt> statements;
@@ -13,6 +27,11 @@ abstract class Stmt {
     static class Expression extends Stmt {
         Expression(Expr expression) {
             this.expression = expression;
+        }
+
+        @Override
+        <R> R accept(Visitor<R> visitor) {
+            return visitor.visitExpressionStmt(this);
         }
 
         final Expr expression;
@@ -24,6 +43,11 @@ abstract class Stmt {
             this.elseBranch = elseBranch;
         }
 
+        @Override
+        <R> R accept(Visitor<R> visitor) {
+            return visitor.visitIfStmt(this);
+        }
+
         final Expr condition;
         final Stmt thenBranch;
         final Stmt elseBranch;
@@ -33,12 +57,22 @@ abstract class Stmt {
             this.expression = expression;
         }
 
+        @Override
+        <R> R accept(Visitor<R> visitor) {
+            return visitor.visitPrintStmt(this);
+        }
+
         final Expr expression;
     }
 
     static class Scan extends Stmt {
         Scan(List<Token> variables) {
             this.variables = variables;
+        }
+
+        @Override
+        <R> R accept(Visitor<R> visitor) {
+            return visitor.visitScanStmt(this);
         }
 
         final List<Token> variables;
@@ -51,6 +85,11 @@ abstract class Stmt {
             this.type = type;
         }
 
+        @Override
+        <R> R accept(Visitor<R> visitor) {
+            return visitor.visitVarStmt(this);
+        }
+
         final Token name;
         final Expr initializer;
         final TokenType type;
@@ -61,7 +100,14 @@ abstract class Stmt {
             this.body = body;
         }
 
+        @Override
+        <R> R accept(Visitor<R> visitor) {
+            return visitor.visitWhileStmt(this);
+        }
+
         final Expr condition;
         final Stmt body;
     }
+
+    abstract <R> R accept(Visitor<R> visitor);
 }

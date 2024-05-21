@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class Code {
+    private static final Interpreter interpreter = new Interpreter();
     static boolean hadError = false;
     static boolean hadRuntimeError = false;
 
@@ -51,17 +52,23 @@ public class Code {
     private static void run(String source) {
         Scanner scanner = new Scanner(source);
         List<Token> tokens = scanner.scanTokens();
+        Parser parser = new Parser(tokens);
+        List<Stmt> statements = parser.parse();
 
         // Stop if there was a syntax error.
         if (hadError) return;
 
-        for (Token token : tokens) {
-            System.out.println(token);
-        }
+        interpreter.interpret(statements);
     }
 
     static void error(int line, String message) {
         report(line, "", message);
+    }
+
+    static void runtimeError(RuntimeError error) {
+        System.err.println(error.getMessage() +
+                "\n[line " + error.token.line + "]");
+        hadRuntimeError = true;
     }
 
     private static void report(int line, String where,
