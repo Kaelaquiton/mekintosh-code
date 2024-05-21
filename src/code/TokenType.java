@@ -1,0 +1,70 @@
+package code;
+
+enum TokenType {
+    // Single-character tokens.
+    LEFT_BRACE,
+    RIGHT_BRACE,
+    LEFT_PAREN,
+    RIGHT_PAREN,
+    LEFT_BRACKET,
+    RIGHT_BRACKET,
+    SINGLE_QOUTE,
+    COMMA,
+    MINUS,
+    PLUS,
+    COLON,
+    SLASH,
+    STAR,
+    PERCENT,
+    SHARP,
+    AMPERSAND,
+    SEMICOLON,
+
+    // One or two character tokens.
+    EQUAL,
+    EQUAL_EQUAL,
+    GREATER,
+    GREATER_EQUAL,
+    LESS,
+    LESS_EQUAL,
+    LESS_GREATER,
+
+    // Literals.
+    IDENTIFIER,
+    CHAR_LITERAL,
+    STRING_LITERAL,
+    INT_LITERAL,
+    FLOAT_LITERAL,
+
+    // Keywords.
+    BEGIN_CODE,
+    END_CODE,
+    BEGIN_FOR,
+    END_FOR,
+    BEGIN_IF,
+    END_IF,
+    BEGIN_WHILE,
+    END_WHILE,
+    FOR,
+    INT,
+    CHAR,
+    STRING,
+    BOOL,
+    FLOAT,
+    NIL,
+    AND,
+    OR,
+    NOT,
+    IF,
+    ELSE,
+    WHILE,
+    TRUE,
+    FALSE,
+    DISPLAY,
+    SCAN,
+    FUN,
+    RETURN,
+    VAR,
+
+    EOF
+}
