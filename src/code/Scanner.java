@@ -30,8 +30,8 @@ class Scanner {
         keywords.put("IF",      IF);
         keywords.put("ELSE",    ELSE);
         keywords.put("WHILE",   WHILE);
-        keywords.put("FOR",     FOR);
-        keywords.put("TRUE",    TRUE);
+        // keywords.put("FOR",     FOR);
+        // keywords.put("TRUE",    TRUE);
         keywords.put("FALSE",   FALSE);
         keywords.put("DISPLAY", DISPLAY);
         keywords.put("SCAN",    SCAN);
