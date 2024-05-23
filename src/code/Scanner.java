@@ -263,8 +263,16 @@ class Scanner {
         // Skip the closing "
         advance();
 
-        // No need to trim quotes as we built the value manually
-        addToken(STRING_LITERAL, value.toString());
+        String stringValue = value.toString();
+
+        // Check for "TRUE" and "FALSE" and add appropriate tokens
+        if (stringValue.equals("TRUE")) {
+            addToken(TRUE);
+        } else if (stringValue.equals("FALSE")) {
+            addToken(FALSE);
+        } else {
+            addToken(STRING_LITERAL, stringValue);
+        }
     }
 
     private void character() {

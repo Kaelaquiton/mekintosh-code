@@ -59,6 +59,10 @@ public class Code {
         if (hadError) return;
 
         interpreter.interpret(statements);
+
+        if (!hadError && !hadRuntimeError) {
+            System.out.println("\u001B[32m" + "No Error" + "\u001B[0m");
+        }
     }
 
     static void error(int line, String message) {
